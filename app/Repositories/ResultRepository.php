@@ -3,11 +3,11 @@
 namespace App\Repositories;
 
 use App\Core\Repository;
-use App\Models\Analysis_results;
+use App\Models\AnalysisResult;
 
 class ResultRepository extends Repository
 {
-    public function __construct(Analysis_results $model)
+    public function __construct(AnalysisResult $model)
     {
         $this->model = $model;
     }

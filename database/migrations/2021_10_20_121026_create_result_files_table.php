@@ -18,7 +18,7 @@ class CreateResultFilesTable extends Migration
             $table->text('storagepath_name');
             $table->text('orginalname');
             $table->text('description');
-            $table->integer('resoult_id');
+            $table->integer('result_id');
             $table->string('download_link')->nullable();
             $table->timestamps();
         });

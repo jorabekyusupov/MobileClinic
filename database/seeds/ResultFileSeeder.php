@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Result_files;
+use App\Models\ResultFile;
 use Illuminate\Database\Seeder;
 
-class Result_filesSeeder extends Seeder
+class ResultFileSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class Result_filesSeeder extends Seeder
      */
     public function run()
     {
-        $faker = factory(Result_files::class, 100)->create();
+        factory(ResultFile::class, 100)->create();
     }
 }

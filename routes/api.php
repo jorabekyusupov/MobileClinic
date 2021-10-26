@@ -18,13 +18,14 @@ use Laravel\Passport\Passport;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('register', 'Api\PassportController@register')->name('register');
+Route::post('login', 'Api\PassportController@login')->name('login');
 
-Route::post('/register', 'Api\PassportController@register')->name('register');
-Route::post('/login', 'Api\PassportController@login')->name('login');
+Route::group(['middleware' => 'auth:api'], function () {
 
-Route::post('/result', 'Api\ResultController@update')->name('ResultCreate');
-Route::post('/show', 'Api\ResultController@show')->name('ResultShow');
+    Route::post('result', 'Api\ResultController@update')->name('ResultCreate');
+    Route::post('show', 'Api\ResultController@show')->name('ResultShow');
 // Route::apiResources('/result','Api\ResultController')->except('index');
+
+});
+

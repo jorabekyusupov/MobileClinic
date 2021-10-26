@@ -16,9 +16,9 @@ class CreateAnalysisResultsTable extends Migration
         Schema::create('analysis_results', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('org_name');
+            $table->string('organization_name');
             $table->string('service_name');
-            $table->date('reg_date');
+            $table->date('registration_date');
             $table->date('result_date');
             $table->integer('status')->default(1);
             $table->timestamps();

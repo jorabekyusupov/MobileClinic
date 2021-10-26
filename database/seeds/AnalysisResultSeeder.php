@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Analysis_results;
+use App\Models\AnalysisResult;
 use Illuminate\Database\Seeder;
 
-class Analysis_resultSeeder extends Seeder
+class AnalysisResultSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class Analysis_resultSeeder extends Seeder
      */
     public function run()
     {
-       $faker = factory(Analysis_results::class, 100)->create();
+       factory(AnalysisResult::class, 100)->create();
     }
 }

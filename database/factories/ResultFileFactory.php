@@ -2,11 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Model;
-use App\Models\Result_files;
+use App\Models\ResultFile;
 use Faker\Generator as Faker;
 
-$factory->define(Result_files::class, function (Faker $faker) {
+$factory->define(ResultFile::class, function (Faker $faker) {
     return [
       'storagepath_name' => $faker->words($nb=4, $asText = true),
       'description' => $faker->text(),

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultValidation;
-use App\Models\Analysis_results;
-use App\Models\Result_files;
+use App\Models\AnalysisResult;
+use App\Models\ResultFile;
 use App\Models\User;
 use App\Services\ResultService;
 use App\Traits\FileUpload;
@@ -40,7 +40,7 @@ class ResultController extends Controller
         $this->user = User::where('phone', $request->phone)->first();
 
 
-        $this->result = Analysis_results::where('id', $request->id)->first();
+        $this->result = AnalysisResult::where('id', $request->id)->first();
         if (!$this->result) {
             if (!$this->user) {
                 $newuser = User::create([
@@ -58,7 +58,7 @@ class ResultController extends Controller
             if ($request->hasFile('files')) {
                 $data = $this->FilesUpload($data, '/app/resultfiles/');
 
-                Result_files::create([
+                ResultFile::create([
                     'description' => $data['files_description'],
                     'storagepath_name' => $data['files'],
                     'orginalname' => $data['files_orginalName'],
@@ -73,13 +73,13 @@ class ResultController extends Controller
         } else {
             if ($request->user_id) {
                 $this->result = $this->service->edit($request->id, $data);
-                $files = Result_files::where('result_id', $this->result->id)->first();
+                $files = ResultFile::where('result_id', $this->result->id)->first();
 
 
                 if (!$files) {
                     if ($request->hasFile('files')) {
                         $data = $this->FilesUpload($data,  '/app/resultfiles/');
-                        Result_files::create([
+                        ResultFile::create([
                             'storagepath_name' => $data['files'],
                             'description' => $data['files_description'],
                             'orginalname' => $data['files_orginalName'],
