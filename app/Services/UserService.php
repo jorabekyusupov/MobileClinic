@@ -12,6 +12,3 @@ class UserService extends Service
         $this->repository = $repository;
     }
 }
-
-
-?>

@@ -14,8 +14,4 @@ class UserRepository extends Repository
     }
 
 
-
 }
-
-
-?>

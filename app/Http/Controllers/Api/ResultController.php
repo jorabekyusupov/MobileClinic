@@ -18,9 +18,9 @@ class ResultController extends Controller
         $this->ResultFileService = $ResultFileService;
         $this->UserService = $UserService;
     }
-    public function show(Request $request)
+    public function show($user_id)
     {
-        $this->result = $this->ResultService->show($request->user_id, ['files', 'user']);
+        $this->result = $this->ResultService->show($user_id, ['files', 'user']);
         $this->result = ResultResource::collection($this->result);
         return response()->successJson($this->result);
     }

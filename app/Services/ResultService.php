@@ -9,9 +9,15 @@ use App\Traits\FileUpload;
 class ResultService extends Service
 {
     use FileUpload;
-    protected $ResultFileService,  $UserService, $ResultActionService;
-    public function __construct(ResultRepository $repository, ResultFileService $resultFileService, UserService $userService, ResultActionService $resultActionService)
-    {
+
+    protected $ResultFileService, $UserService, $ResultActionService;
+
+    public function __construct(
+        ResultRepository $repository,
+        ResultFileService $resultFileService,
+        UserService $userService,
+        ResultActionService $resultActionService
+    ) {
         $this->ResultFileService = $resultFileService;
         $this->UserService = $userService;
         $this->ResultActionService = $resultActionService;
@@ -24,13 +30,10 @@ class ResultService extends Service
         $this->user = $this->UserService->get()->where('phone', request('user_phone'))->first();
         $this->result = $this->get()->where('id', request('id'))->first();
         if (!$this->result) {
-          return  $this->ResultActionService->store($this->user, $this->result, $data, $request);
+            return $this->ResultActionService->store($this->user, $this->result, $data, $request);
         } else {
-          return  $this->ResultActionService->update($this->user, $this->result, $data, $request);
+            return $this->ResultActionService->update($this->user, $this->result, $data, $request);
         }
     }
 
 }
-
-
-?>
