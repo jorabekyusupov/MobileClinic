@@ -15,4 +15,8 @@ class AnalysisResult extends Model
     {
         return $this->hasMany(ResultFile::class, 'result_id', 'id');
     }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id'); 
+    }
 }

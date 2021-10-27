@@ -33,8 +33,8 @@ trait FileUpload
             $FilesNameString = implode(',', $FilesName);
             $FileOrgNameString = implode(',', $OrginalName);
 
-            $data['files'] = $FilesNameString;
-            $data['files_orginalName'] = $FileOrgNameString;
+            $data['storagepath_name'] = $FilesNameString;
+            $data['orginalname'] = $FileOrgNameString;
         }
 
         return $data; // Just return image

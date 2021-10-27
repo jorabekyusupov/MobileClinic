@@ -14,7 +14,7 @@ class ResultRepository extends Repository
     public function show($id, $relation = null): object
     {
         $query = $this->query($relation);
-        return $query->where('user_id', $id)->get();
+        return $query->where('user_id', $id)->get(); 
     }
 
 

@@ -34,7 +34,7 @@ class ResultValidation extends FormRequest
             'result_date' => 'required|date',
             'status' => 'required',
             'files' => 'required',
-            'files_description' => 'required'
+            'description' => 'required'
         ];
     }
 }
