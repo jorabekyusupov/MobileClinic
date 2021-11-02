@@ -5,6 +5,9 @@ namespace App\Services;
 use App\Core\Service;
 use App\Repositories\ResultRepository;
 use App\Traits\FileUpload;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Illuminate\Support\Facades\Storage;
+
 class ResultActionService extends Service
 {
     use FileUpload;
@@ -26,14 +29,12 @@ class ResultActionService extends Service
         }
         $result = $this->create($data);
         if ($request->hasFile('files')) {
-            $data = $this->FilesUpload($data, '/app/resultfiles/');
-            $data['result_id'] = $result->id;
-            $this->ResultFileService->create($data);
+            $data = $this->FilesUpload($data, '/app/resultfiles/', $result->id);
         }
         if ($result)
-            return response()->successJson(201, 'the created successfully');
+            return response()->successJson(null,201, 'the created successfully');
         else
-            return response()->errorJson(500, 'the not created');
+            return response()->errorJson(null,500, 'the not created');
     }
     public function update($user, $result, $data, $request)
     {
@@ -56,10 +57,11 @@ class ResultActionService extends Service
                 $this->UserService->edit($user->id,$data);
             }
             if ($result) {
-                return response()->successJson('null', 'the updated successfully');
+                return response()->successJson(null, 200, 'the updated successfully');
             } else {
-                return response()->errorJson(500, 'the not updated');
+                return response()->errorJson(null,500, 'the not updated');
             }
         }
     }
+  
 }

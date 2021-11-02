@@ -30,7 +30,7 @@ class Repository
         return $model;
     }
 
-    public function show($id, $relation = null): object
+    public function show($id,  $relation = null): object
     {
         $model = $this->query($relation);
         return $model->find($id);

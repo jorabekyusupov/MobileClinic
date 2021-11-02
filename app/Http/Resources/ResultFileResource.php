@@ -16,10 +16,7 @@ class ResultFileResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'storagepath_name' => $this->storagepath_name,
             'description' => $this->description,
-            'download_link' => $this->download_link,
-            'result_id' => $this->result_id,
             'orginalname' => $this->orginalname,
             'created_at' => $this->created_at
 

@@ -14,7 +14,7 @@ class ResultResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = new UserResource($this->user);
+
         $files = ResultFileResource::collection($this->files);
         return [
             'id' => $this->id,
@@ -24,7 +24,7 @@ class ResultResource extends JsonResource
             'result_date' => $this->result_date,
             'status' => $this->status,
             'files' => $files,
-            'user' => $user
+      
         ];
     }
 }

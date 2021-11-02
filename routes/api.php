@@ -18,11 +18,13 @@ use Laravel\Passport\Passport;
 |
 */
 
-Route::post('register', 'Api\PassportController@register')->name('register');
-Route::post('login', 'Api\PassportController@login')->name('login');
-
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('result', 'Api\ResultController@update')->name('ResultCreate');
-    Route::get('/show/{user_id}', 'Api\ResultController@show')->name('ResultShow');
+Route::group(['prefix' => 'user'], function () {
+    Route::post('register', 'Api\PassportController@register')->name('register');
+    Route::post('login', 'Api\PassportController@login')->name('login');
 });
-
+Route::group(['prefix' => 'analysis', 'middleware' => 'auth:api'], function () {
+    Route::post('result', 'Api\ResultController@update')->name('ResultCreate');
+    Route::get('/list', 'Api\ResultController@list')->name('ResultList');
+    Route::get('/show/{result_id}', 'Api\ResultController@show')->name('ResultShow');
+    Route::post('/file/download/{file_id}', 'Api\ResultController@FileDownload');
+});
