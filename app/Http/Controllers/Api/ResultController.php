@@ -15,23 +15,29 @@ use Illuminate\Support\Facades\Auth;
 class ResultController extends Controller
 {
     use FileUpload;
+
     protected $ResultService, $ResultFileService, $UserService, $user, $result, $authUser;
-    public function __construct(ResultService $ResultService, ResultFileService $ResultFileService, UserService $UserService)
-    {
+
+    public function __construct(
+        ResultService $ResultService,
+        ResultFileService $ResultFileService,
+        UserService $UserService
+    ) {
         $this->ResultService = $ResultService;
         $this->ResultFileService = $ResultFileService;
         $this->UserService = $UserService;
     }
+
     public function show($result_id)
     {
         $this->result = $this->ResultService->singleShow($result_id);
         if ($this->result) {
             return response()->successJson($this->result, 200);
-        }
-        else{
+        } else {
             return response()->errorJson(500);
         }
     }
+
     public function list()
     {
         $this->authUser = Auth::user()->id;
@@ -39,17 +45,23 @@ class ResultController extends Controller
         $this->result = ResultResource::collection($this->result);
         if ($this->result) {
             return response()->successJson($this->result, 200);
-        }
-        else{
+        } else {
             return response()->errorJson(500);
         }
     }
+
     public function update(ResultValidation $request)
     {
         return $this->ResultService->StoreAction($request);
     }
+
     public function FileDownload($file_id)
     {
-      return $this->ResultService->getFile($file_id);
+        return $this->ResultService->getFile($file_id);
+    }
+
+    public function hello()
+    {
+        return "Hello world";
     }
 }
